@@ -22,7 +22,7 @@ const router = createRouter({
           meta: {
             menu: true, displayName: 'pinia'
           },
-          component: () => import('views/vue/Pinia.vue')
+          component: () => import('views/vue/PiniaTest.vue')
         }, {
           path: 'todo-list',
           name: 'todo-list',
@@ -73,6 +73,32 @@ const router = createRouter({
             menu: true, displayName: 'test'
           },
           component: () => import('@/views/leafer/index.vue')
+        }
+      ]
+    },
+    {
+      path: '/file-upload',
+      name: 'fileUpload',
+      meta: {
+        menu:true, displayName: '文件上传'
+      },
+      component: Layout,
+      children:  [
+        {
+          path: 'single-file',
+          name: 'singleFile',
+          meta: {
+            menu: true, displayName: '单文件'
+          },
+          component: () => import('@/views/file/single-file/index.vue')
+        },
+        {
+          path: 'multiple-file',
+          name: 'multipleFile',
+          meta: {
+            menu: true, displayName: '多文件'
+          },
+          component: () => import('@/views/file/multiple-file/index.vue')
         }
       ]
     }
