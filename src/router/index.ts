@@ -101,6 +101,37 @@ const router = createRouter({
           component: () => import('@/views/file/multiple-file/index.vue')
         }
       ]
+    },
+    {
+      path: '/three',
+      name: 'three',
+      meta: {
+        menu: true, displayName: 'three',
+      },
+      component: Layout,
+      children: [{
+        path: 'jump',
+        name: 'jump',
+        meta: {
+          menu: 'true', displayName: '跳一跳',
+        },
+        component: () => import('@/views/three/jump/index.vue')
+      },{
+        path: 'cake',
+        name: 'cake',
+        meta: {
+          menu: 'true', displayName: '蛋糕',
+        },
+        component: () => import('@/views/three/cake/index.vue')
+      },{
+        path: 'home',
+        name: 'home',
+        meta: {
+          menu: 'true', displayName: '房子',
+        },
+        component: () => import('@/views/three/home/index.vue')
+      }
+    ]
     }
   ]
 })
