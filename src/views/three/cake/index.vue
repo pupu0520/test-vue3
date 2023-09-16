@@ -55,8 +55,8 @@ function setBase() {
   //三维场景显示范围的高度
   const s = 200;
   camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000); // 初始化相机
-  camera.position.set(100, 100, 100);
-  camera.lookAt(scene.position);
+  camera.position.set(100, 100, 100); // 相机位置
+  camera.lookAt(scene.position); // 相机镜头对应位置
 }
 
 function setLightSource() {

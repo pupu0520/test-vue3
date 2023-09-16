@@ -130,8 +130,14 @@ const router = createRouter({
           menu: 'true', displayName: '房子',
         },
         component: () => import('@/views/three/home/index.vue')
-      }
-    ]
+      },{
+        path:'test',
+        name: 'test',
+        meta: {
+          menu: 'true', displayName: '基础',
+        },
+        component: () => import('@/views/three/base/index.vue')
+      }]
     }
   ]
 })
