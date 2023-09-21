@@ -110,6 +110,13 @@ const router = createRouter({
       },
       component: Layout,
       children: [{
+        path:'base',
+        name: 'base',
+        meta: {
+          menu: 'true', displayName: '基础',
+        },
+        component: () => import('@/views/three/base/index.vue')
+      },{
         path: 'jump',
         name: 'jump',
         meta: {
@@ -127,16 +134,23 @@ const router = createRouter({
         path: 'home',
         name: 'home',
         meta: {
-          menu: 'true', displayName: '房子',
+          menu: 'true', displayName: '室内',
         },
         component: () => import('@/views/three/home/index.vue')
-      },{
-        path:'test',
-        name: 'test',
+      }, {
+        path: 'house',
+        name: 'house',
         meta: {
-          menu: 'true', displayName: '基础',
+          menu: 'true', displayName: '房子',
         },
-        component: () => import('@/views/three/base/index.vue')
+        component: () => import('@/views/three/house/index.vue')
+      }, {
+        path: 'earth',
+        name: 'earth',
+        meta: {
+          menu: 'true', displayName: '地球',
+        },
+        component: () => import('@/views/three/earth/index.vue')
       }]
     }
   ]

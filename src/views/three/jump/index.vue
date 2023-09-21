@@ -5,6 +5,7 @@
 
 <script setup>
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { onMounted, ref } from 'vue';
 
 
@@ -34,6 +35,8 @@ function init() {
   createPlayer()
 
   render()
+
+  new OrbitControls(camera, renderer.domElement);
 }
 
 function setThreeSize() {
@@ -81,7 +84,11 @@ function createCube(x, z) {
 
 function createPlayer() {
   const geometry = new THREE.BoxGeometry( 5, 20, 5 );
-  const material = new THREE.MeshPhongMaterial( {color: 0x000000} );
+  const material = new THREE.MeshPhongMaterial({
+    color: 0x000000,
+    shininess: 20, //高光部分的亮度，默认30
+    specular: 0x444444, //高光部分的颜色
+  });
   player = new THREE.Mesh( geometry, material ); 
   player.position.x = 0;
   player.position.y = 17.5; // 因为添加的元素都是在正中心
