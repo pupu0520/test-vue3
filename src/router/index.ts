@@ -152,6 +152,24 @@ const router = createRouter({
         },
         component: () => import('@/views/three/earth/index.vue')
       }]
+    }, 
+    {
+      path: '/echarts',
+      name: 'echarts',
+      component: Layout,
+      meta: {
+        menu: true, displayName: 'echarts'
+      },
+      children: [
+        {
+          path: 'legend',
+          name: 'legend',
+          meta: {
+            menu: true, displayName: 'legend'
+          },
+          component: () => import('views/echarts/legend/index.vue')
+        }
+      ]
     }
   ]
 })

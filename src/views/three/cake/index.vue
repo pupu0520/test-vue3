@@ -9,6 +9,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { ref, onMounted, nextTick } from 'vue';
 import cakeImg1 from '@/assets/image/three-js/cake/cake1.png';
 import cakeImg2 from '@/assets/image/three-js/cake/cake2.png';
@@ -33,7 +34,8 @@ async function init(){
   setHelperLine();
 
   // setCylinder();
-  setCakeGroup();
+  // setCakeGroup();
+  setDuck()
   await nextTick()
   render();
   controls();
@@ -60,7 +62,7 @@ function setBase() {
 }
 
 function setLightSource() {
-  const light = new THREE.AmbientLight(0xCCCCCC);
+  const light = new THREE.AmbientLight(0xffffff);
   scene.add(light);
 }
 
@@ -123,8 +125,7 @@ function setCakeGroup() {
   cake.add(cakePart4)
 
 
-  setText()
-
+  // setText()
   scene.add(cake);
 }
 
@@ -147,6 +148,16 @@ function setText() {
 
     cake.add(text); 
   })
+}
+
+function setDuck() {
+  const gltfLoader = new GLTFLoader();
+  gltfLoader.load('/module/Duck/glTF/Duck.gltf', function (gltf) {
+    console.log('控制台查看加载gltf文件返回的对象结构', gltf);
+    console.log('gltf对象场景属性', gltf.scene);
+    // 返回的场景对象gltf.scene插入到threejs场景中
+    scene.add(gltf.scene.children[0].children[0]);
+  });
 }
 
 function render () {
