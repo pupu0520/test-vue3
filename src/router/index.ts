@@ -22,21 +22,21 @@ const router = createRouter({
           meta: {
             menu: true, displayName: 'pinia'
           },
-          component: () => import('views/vue/PiniaTest.vue')
+          component: () => import('@/views/vue/PiniaTest.vue')
         }, {
           path: 'todo-list',
           name: 'todo-list',
           meta: {
             menu: true, displayName: 'todo-list'
           },
-          component: () => import('views/vue/TodoList.vue')
+          component: () => import('@/views/vue/TodoList.vue')
         }, {
           path: 'props',
           name: 'props',
           meta: {
             menu: true, displayName: 'props'
           },
-          component: () => import('views/vue/Props/index.vue')
+          component: () => import('@/views/vue/Props/index.vue')
         }
       ]
     },
@@ -167,8 +167,36 @@ const router = createRouter({
           meta: {
             menu: true, displayName: 'legend'
           },
-          component: () => import('views/echarts/legend/index.vue')
+          component: () => import('@/views/echarts/legend/index.vue')
         }
+      ]
+    },
+    {
+      path: '/short-chains',
+      name: 'short-chains',
+      component: Layout,
+      meta: {
+        menu: true, displayName: '短链'
+      },
+      children: [
+        {
+          path: 'legend',
+          name: 'legend',
+          meta: {
+            menu: true, displayName: '例子'
+          },
+          component: () => import('@/views/short-chains/legend/index.vue')
+        }
+      ]
+    }, {
+      path: '/dayjs',
+      name: 'dayjs',
+      meta: {
+        menu: true, displayName: '日期'
+      },
+      component: Layout,
+      children:[
+        { path: 'base', name: 'base', meta: {menu: true, displayName: 'base' }, component:() => import('@/views/dayjs/main-index.vue') }
       ]
     }
   ]

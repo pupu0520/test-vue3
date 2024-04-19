@@ -40,18 +40,24 @@ const menuShow = ref(menuArr)
 
 
 function changMenu(index) {
-  const indexArr = index.split('-');
   let curName = menuArr;
-  for(let i = 0; i < indexArr.length; i++) {
-    if(i === indexArr.length - 1) {
-      curName = curName[indexArr[i]];
-    } else {
-      curName = curName[indexArr[i]].children;
+  if(typeof(index) === 'string' && index.includes('-')){
+    const indexArr = index.split('-');
+    for(let i = 0; i < indexArr.length; i++) {
+      if(i === indexArr.length - 1) {
+        curName = curName[indexArr[i]];
+      } else {
+        curName = curName[indexArr[i]].children;
+      }
     }
+  } else {
+    curName = curName[index];
   }
   
+  const name = curName?.name ?? '';
+  if(!name) return;
   router.push({
-    name: curName.name
+    name
   })
 }
 </script>
