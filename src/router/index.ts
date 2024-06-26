@@ -188,7 +188,8 @@ const router = createRouter({
           component: () => import('@/views/short-chains/legend/index.vue')
         }
       ]
-    }, {
+    }, 
+    {
       path: '/dayjs',
       name: 'dayjs',
       meta: {
@@ -198,7 +199,9 @@ const router = createRouter({
       children:[
         { path: 'base', name: 'base', meta: {menu: true, displayName: 'base' }, component:() => import('@/views/dayjs/main-index.vue') }
       ]
-    }
+    },
+    { path: '/test1', name: 'test', component: () => import('@/views/test/test1.vue') },
+    { path: '/test1/test2', name: 'test2', component: () => import('@/views/test/test2.vue') },
   ]
 })
 
