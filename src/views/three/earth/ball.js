@@ -8,9 +8,10 @@ export const setBall = (
 ) => {
   const geometry = new THREE.SphereGeometry(...sphere);
   const texture = new THREE.TextureLoader().load(img);
+  texture.colorSpace = THREE.SRGBColorSpace;  // 使画出的效果更切合实际效果
   const material = new THREE.MeshBasicMaterial({
     map: texture
-  }); 
+  });
   const cube = new THREE.Mesh(geometry, material);
   return cube;
 }
