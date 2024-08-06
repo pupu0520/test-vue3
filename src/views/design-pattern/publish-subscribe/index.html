@@ -1,0 +1,76 @@
+<html>
+  <body>
+    <button id="on">注册事件</button>
+    <button id="emit">触发事件</button>
+    <button id="off">解绑事件</button>
+    <button id="one-on">one-on注册事件</button>
+    <button id="one-emit">one-on解绑事件</button>
+  </body>
+  <script>
+
+    class Custom {
+      #handler = {}
+
+      $on(event, callback) {
+        if(this.#handler[event] === undefined) {
+          this.#handler[event] = [];
+        }
+        this.#handler[event].push(callback)
+      }
+
+      // 形参中...相当于解构赋值，把多个参数整合成一个
+      $emit(event, ...arg) {
+        const handler = this.#handler[event] || [];
+        handler.forEach(callback => {
+          callback(...arg) // 方法里面是扩展运算符，展开数据
+        })
+      }
+
+      $off(event) {
+        this.#handler[event] = undefined;
+      }
+
+      // once 走的是on的注册逻辑
+      $once(event, callback) {
+        this.$on(event, (...arg) => {
+          callback(...arg);
+          this.$off(event)
+        });
+      }
+    }
+
+    let bus = new Custom()
+
+    document.getElementById('on').addEventListener('click', () => {
+      bus.$on('eventA', (a) => {
+        console.log(a, '单个参数')
+      })
+      bus.$on('eventB', (a,b) => {
+        console.log(a, b, '多个参数')
+      })
+      bus.$on('eventB', (a,b) => {
+        console.log(a, b,'多个参数第二次')
+      })
+    })
+
+    document.getElementById('emit').addEventListener('click', () => {
+      bus.$emit('eventA', 'a')
+      bus.$emit('eventB', 'b1', 'b2')
+    })
+
+    document.getElementById('off').addEventListener('click', () => {
+      bus.$off('eventA')
+      bus.$off('eventB')
+    })
+
+    document.getElementById('one-on').addEventListener('click', () => {
+      bus.$once('one', (a,b) => {
+        console.log(a, b, '1111')
+      })
+    })
+
+    document.getElementById('one-emit').addEventListener('click', () => {
+      bus.$emit('one', 'a', 'b')
+    })
+  </script>
+</html>
