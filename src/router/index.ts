@@ -151,6 +151,13 @@ const router = createRouter({
           menu: 'true', displayName: '地球',
         },
         component: () => import('@/views/three/earth/index.vue')
+      }, {
+        path: 'tc4600',
+        name: 'tc4600',
+        meta: {
+          menu: 'true', displayName: 'tc4600',
+        },
+        component: () => import('@/views/three/chassis/tc4600/InitPage.vue')
       }]
     }, 
     {

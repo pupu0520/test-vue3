@@ -33,9 +33,9 @@ async function init(){
   setLightSource();
   setHelperLine();
 
-  // setCylinder();
-  // setCakeGroup();
-  setDuck()
+  setCylinder();
+  setCakeGroup();
+  // setDuck()
   await nextTick()
   render();
   controls();
