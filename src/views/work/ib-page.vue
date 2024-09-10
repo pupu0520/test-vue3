@@ -5,13 +5,13 @@
 </template>
 
 <script>
-const fs = require('fs')
-const compiler = require('vue-template-compiler')
+// const fs = require('fs')
+// const compiler = require('vue-template-compiler')
 
-const file = fs.readFileSync('./test.vue', 'utf8')
-const output = compiler.compile(file)
+// const file = fs.readFileSync('./test.vue', 'utf8')
+// const output = compiler.compile(file)
 
-console.log(output.render)
+// console.log(output.render)
 </script>
 
 <style lang='scss' scoped>

@@ -53,7 +53,7 @@ function changMenu(index) {
   } else {
     curName = curName[index];
   }
-  
+
   const name = curName?.name ?? '';
   if(!name) return;
   router.push({

@@ -59,6 +59,31 @@ const router = createRouter({
       ]
     },
     {
+      path: '/g6',
+      name: 'g6',
+      meta: {
+        menu: true, displayName: 'antv-g6'
+      },
+      component: Layout,
+      children:  [
+        {
+          path: 'lodash',
+          name: 'lodash',
+          meta: {
+            menu: true, displayName: 'lodash'
+          },
+          component: () => import('@/views/g6/LodashIndex.vue')
+        },{
+          path: 'antv3d',
+          name: 'antv3d',
+          meta: {
+            menu: true, displayName: 'antv3d'
+          },
+          component: () => import('@/views/g6/LodashIndex.vue')
+        }
+      ]
+    },
+    {
       path: '/leafer',
       name: 'leafer',
       meta: {
