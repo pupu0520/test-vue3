@@ -200,6 +200,15 @@ const router = createRouter({
             menu: true, displayName: 'legend'
           },
           component: () => import('@/views/echarts/legend/index.vue')
+        },
+        
+        {
+          path: 'clock',
+          name: 'clock',
+          meta: {
+            menu: true, displayName: '钟表'
+          },
+          component: () => import('@/views/echarts/clock/Clock.vue')
         }
       ]
     },
