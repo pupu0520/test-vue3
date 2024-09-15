@@ -5,6 +5,60 @@ import dayjs from 'dayjs';
 
 const clockDom = ref();
 let clockChart = null;
+let timer = null;
+
+function setSeriesData () {
+  const time = dayjs().format('HH:mm:ss').split(':');
+  let [hour, minute, second] = time;
+  hour = hour % 12;
+  minute = minute / 5;
+  second = second / 5;
+  return [
+    {
+      value: second,
+      name: '秒',
+      title: {
+        show: false,
+      },
+      detail: {
+        show: false,
+      },
+      pointer: {
+        length: '85%',
+        width: 2
+      }
+    },
+    {
+      value: minute,
+      name: '分',
+      title: {
+        show: false,
+      },
+      detail: {
+        show: false,
+      },
+      pointer: {
+        length: '65%',
+        width: 4
+      }
+    },
+    {
+      value: hour,
+      name: '时',
+      title: {
+        show: false,
+      },
+      detail: {
+        show: false,
+      },
+      pointer: {
+        length: '45%',
+        width: 8
+      }
+    }
+  ]
+}
+
 function setOption() {
   const option = {
     series: [
@@ -12,6 +66,7 @@ function setOption() {
         type: 'gauge',
         startAngle: 90, // 起始角度
         endAngle: -270, // 结束角度
+        min: 0,
         max: 12,
         splitNumber: 60, // 分割线
         anchor: { // 指针固定点
@@ -41,7 +96,7 @@ function setOption() {
           show: true,
         },
         axisTick: { // 刻度线
-          show: true,
+          show: false,
         },
         axisLabel: {
           show: true,
@@ -50,50 +105,9 @@ function setOption() {
             return parseFloat(value) !== parseInt(value, 10) ? '' : value;
           }
         },
-        data: [
-          {
-            value: 2,
-            name: '时',
-            title: {
-              show: false,
-            },
-            detail: {
-              show: false,
-            },
-            pointer: {
-              length: '45%',
-              width: 8
-            }
-          },
-          {
-            value: 4,
-            name: '分',
-            title: {
-              show: false,
-            },
-            detail: {
-              show: false,
-            },
-            pointer: {
-              length: '65%',
-              width: 4
-            }
-          },
-          {
-            value: 6,
-            name: '秒',
-            title: {
-              show: false,
-            },
-            detail: {
-              show: false,
-            },
-            pointer: {
-              length: '85%',
-              width: 2
-            }
-          }
-        ],
+        clockwise: true,
+        animationEasingUpdate: 'bounceOut',
+        data: setSeriesData(),
         title: {
           fontSize: 14
         },
@@ -113,18 +127,14 @@ function setOption() {
   clockChart.setOption(option)
 }
 
-
 function updateOption() {
   clockChart.setOption({
-    series: [
-      {
-        data: [
-          {value: 1, name: '时'},
-          {value: 2, name: '分'},
-          {value: 3, name: '秒'},
-        ]
+    series:[
+      { 
+        animation: false,
+        data: setSeriesData()
       }
-    ]
+    ] 
   })
 }
 
@@ -132,6 +142,8 @@ function updateOption() {
 function init() {
   setOption();
   updateOption();
+  clearInterval(timer);
+  timer = setInterval(updateOption, 1000);
 }
 
 onMounted(() => {
