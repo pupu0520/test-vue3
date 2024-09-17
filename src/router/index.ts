@@ -209,6 +209,14 @@ const router = createRouter({
             menu: true, displayName: '钟表'
           },
           component: () => import('@/views/echarts/clock/Clock.vue')
+        },
+        {
+          path: 'node',
+          name: 'node',
+          meta: {
+            menu: true, displayName: '首页机柜视图'
+          },
+          component: () => import('@/views/echarts/custom/node.vue')
         }
       ]
     },
