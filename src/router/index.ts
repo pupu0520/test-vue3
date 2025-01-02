@@ -214,9 +214,17 @@ const router = createRouter({
           path: 'node',
           name: 'node',
           meta: {
-            menu: true, displayName: '首页机柜视图'
+            menu: true, displayName: '首页节点'
           },
           component: () => import('@/views/echarts/custom/node.vue')
+        },
+        {
+          path: 'packPower',
+          name: 'packPower',
+          meta: {
+            menu: true, displayName: '园区电力监控'
+          },
+          component: () => import('@/views/echarts/custom/ParkPower.vue')
         }
       ]
     },
